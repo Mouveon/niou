@@ -345,8 +345,8 @@ const insertDocuments = function(db, temp, callback) {
     console.log("fin test des values")
 
     collection.insertMany(temp, function(err, result) {
-       // console.log(err)
-       // console.log(result)
+        console.log(err)
+        console.log(result)
         callback(result);
     });
 }
@@ -937,16 +937,20 @@ bot.on('ready', async () => {
                  */
                 debut = new Date().getTime()
                 console.log("reset")
-                MongoClient.connect("mongodb://localhost/radio", {
+                MongoClient.connect("mongodb+srv://moveon:inexium40@cluster0-fkr7w.gcp.mongodb.net/test", {
+//                MongoClient.connect("mongodb://localhost/radio", {
                     useUnifiedTopology: true
                 }, function(error, client) {
+		    console.log("connect lance")
                     if (error) {
+			console.log(error)
                         return funcCallback(error);
                     }
-
+		    console.log("insertion")
                     db = client.db(dbName);
 
                     insertDocuments(db, test, function() {
+			console.log("insertion")
                         client.close();
                     });
                     //Reinitialise la pile des gens qui parlent et les gens qu'ont parlé
@@ -1547,10 +1551,12 @@ name: 'dechet.mp3'
                     ////////////////////////////////////////////////
 
 
-                    MongoClient.connect("mongodb://localhost/radio", {
+                    MongoClient.connect("mongodb+srv://moveon:inexium40@cluster0-fkr7w.gcp.mongodb.net/test", {
+//                    MongoClient.connect("mongodb://localhost/radio", {
                         useUnifiedTopology: true
                     }, function(error, client) {
                         if (error) {
+			    console.log(error)
                             return funcCallback(error);
                         }
                         console.log("connecte a la base de donnes des pd");
@@ -1779,11 +1785,12 @@ name: 'dechet.mp3'
 
         console.log(message.content.split(' '))
 
-        MongoClient.connect("mongodb://localhost/radio", {
+        MongoClient.connect("mongodb+srv://moveon:inexium40@cluster0-fkr7w.gcp.mongodb.net/test", {
+//        MongoClient.connect("mongodb://localhost/radio", {
             useUnifiedTopology: true
         }, async function(error, client) {
             if (error) {
-                B
+                console.log(error)
                 return funcCallback(error);
             }
             console.log("connecte a la base de donnes des pd");
@@ -1997,10 +2004,12 @@ name: 'dechet.mp3'
         //stats=[]
         //var quer_date = new Date().getTime() - 3600000;
 
-        MongoClient.connect("mongodb://localhost/radio", {
+        MongoClient.connect("mongodb+srv://moveon:inexium40@cluster0-fkr7w.gcp.mongodb.net/test", {
+//        MongoClient.connect("mongodb://localhost/radio", {
             useUnifiedTopology: true
         }, function(error, client) {
             if (error) {
+		console.log(error)
                 return funcCallback(error);
             }
             console.log("connecte a la base de donnes des pd");
@@ -2379,5 +2388,3 @@ name: 'dechet.mp3'
 //console.log("DEBUT DU CODE")
 //Object.getPrototypeOf
 bot.login(path_val.selfbottoken[2]);
-//bot.login('NjcxNzE5NjY2NzY2MzE1NTQw.XjOZZw.hGdk_nEXaGMrd4_Nr-oRSIhzewE')
-//bot.login("NjcyNjM0Nzk3NDkwODMxMzcw.Xnevrg.6PeWbA3nkjT6zNZ-15GVawn6dQU")
